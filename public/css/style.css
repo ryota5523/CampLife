@@ -1,0 +1,74 @@
+.icon {
+    height: 37px;
+    width: 37px;
+    color: gray;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.article {
+    width: 270px;
+    margin-bottom: 2rem;
+}
+
+.article-body {
+    font-size: 18px;
+}
+
+.thumbnail {
+    width: 100%;
+    margin-bottom: 15px;
+}
+.thumbnail img {
+    width: 100%;
+    border: solid 1px gainsboro;
+    border-radius: 5px;
+}
+.article-body {
+    height: 130px;
+}
+.article h5 {
+    font-size: 18px;
+}
+.article h6 {
+    font-size: 12px;
+}
+.posts {
+    margin-left: auto;
+    margin-right: auto;
+}
+.post {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.post img {
+    width: 100%;
+    margin-bottom: 15px;
+}
+.post h2 {
+    font-size: 32px;
+}
+.post h6 {
+    font-size: 12px;
+}
+.post-content {
+    margin-bottom: 15px;
+}
+.post-content span {
+    display: block;
+}
+.post-title {
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 100px;
+    font-size: 32px;
+    margin-bottom: 15px;
+}
+.post-body {
+    height: 700px;
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 18px;
+}

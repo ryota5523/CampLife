@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use App\Http\Requests\UploadImageRequest;
+use App\Services\ImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -42,9 +43,9 @@ class PostController extends Controller
         $query->join('users', 'posts.user_id', '=', 'users.id');
         $query->select('posts.id as post_id', 'posts.created_at as created_at', 'title', 'body', 'user_id', 'users.id', 'users.name', 'filename');
         $query->orderby('created_at', 'desc');
-        $posts = $query->paginate(21);
+        $posts = $query->paginate(20);
 
-
+        // dd($posts);
         return view ('posts.index', compact('posts')) ;
     }
 
@@ -77,18 +78,14 @@ class PostController extends Controller
         
         $imageFile = $request->image;
         if (!is_null($imageFile) && $imageFile->isValid()) {
-          $filename1 = uniqid(rand().'_');
-          $extension = $imageFile->extension(); 
-          $post ->filename = $filename1 . '.' . $extension;
-          $resizedImage = InterventionImage::make($imageFile)->resize(1280, 866)->encode();
-          Storage::put('public/posts/' . $post->filename, $resizedImage );
+          $post->filename = Imageservice::upload($imageFile, 'posts');
 
-          $post->save();
         }
-
+        $post->save();
+        
 
         
-        return redirect('index');
+        return redirect('/');
 
     }
 
@@ -103,7 +100,9 @@ class PostController extends Controller
         //
         $post = DB::table('posts')
         ->join('users', 'posts.user_id', '=', 'users.id')
-        ->where('posts.id', $id)->first();
+        ->where('posts.id', $id)
+        ->select('posts.id as post_id', 'posts.created_at as created_at', 'title', 'body', 'user_id', 'users.id', 'users.name', 'filename')
+        ->first();
 
 
         // dd($post);
@@ -120,7 +119,9 @@ class PostController extends Controller
     public function edit($id)
     {
         //
+        
         $post = Post::find($id);
+        // dd($post);
 
         return view('posts.edit', compact('post'));
 
@@ -133,19 +134,31 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UploadImageRequest $request, $id)
     {
         //
-        $post = Post::find($id);
+        $request->validate([
+          'title' => 'required|string|max:50',
+          'body' => 'required|string|max:1000', 
+          ]);
 
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
+        $imageFile = $request->image;
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+          $filename = Imageservice::upload($imageFile, 'posts');
+        }
+
+        $post = Post::findOrFail($id);
+        $post->title = $request->title; 
+        $post->body = $request->body; 
+        $post->user_id = Auth::user()->id;
         
+        if(!is_null($imageFile) && $imageFile->isValid()) { 
+          $post->filename = $filename; 
+          $post->save();
+        }
 
-
-        $post->save();
-
-        return redirect('index');
+        
+        return redirect('/');
 
     }
 

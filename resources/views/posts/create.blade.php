@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 <body>
   <div id="app">
@@ -46,10 +47,10 @@
     @endif
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <form action="{{ route('store') }}" method="post" enctype="multipart/form-data">
+          <form action="{{ route('store') }}" method="post" enctype="multipart/form-data" class="create">
             @csrf
-            <input type="text" placeholder="タイトル" name="title" class="form-control">
-            <textarea class="form-control form-body" name="body" placeholder="本文" cols="30" style="height: 100px;"></textarea>
+            <textarea type="text" placeholder="タイトル" name="title" class="post-title"></textarea>
+            <textarea class="post-body" name="body" placeholder="本文" cols="30"></textarea>
             <div class="form-group">
               <input type="file" class="form-control-file" name='image' id="image" <input type=“file” accept="image/png,image/jpeg,image/jpg">
             </div>
