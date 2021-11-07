@@ -52,7 +52,6 @@ html {
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-
 article,
 aside,
 figcaption,
@@ -178,8 +177,7 @@ a {
 }
 
 a:hover {
-    color: #1d68a7;
-    text-decoration: underline;
+    cursor: pointer;
 }
 
 a:not([href]):not([class]) {
@@ -311,7 +309,7 @@ input[type="checkbox"] {
 
 textarea {
     overflow: auto;
-    resize: none;
+    resize: vertical;
 }
 
 fieldset {
@@ -3625,16 +3623,16 @@ input[type="button"].btn-block {
 
 .dropdown-item:hover,
 .dropdown-item:focus {
-    color: #16181b;
+    color: #e9ecef;
     text-decoration: none;
-    background-color: #e9ecef;
+    background-color: #2d995b;
 }
 
 .dropdown-item.active,
 .dropdown-item:active {
     color: #fff;
     text-decoration: none;
-    background-color: #3490dc;
+    background-color: #38c172;
 }
 
 .dropdown-item.disabled,

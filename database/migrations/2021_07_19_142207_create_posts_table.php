@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->string('title',30);
             $table->LongText('body');
             $table->unsignedBigInteger('user_id');
-            $table->string('filename');
+            $table->string('filename')->nullable();
             $table->timestamps();
 
             //user_idに外部キー制約
