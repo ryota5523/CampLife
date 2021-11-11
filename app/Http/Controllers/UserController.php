@@ -77,11 +77,13 @@ class UserController extends Controller
         ]);
 
         $imageFile = $request->image;
+        $user = User::findOrFail($id);
+        
         if (!is_null($imageFile) && $imageFile->isValid()) {
+          Storage::disk('local')->delete('public/users/'.$user->filename);
           $filename = UserImageservice::upload($imageFile, 'users');
           
         }
-        $user = User::findOrFail($id);
         
         if (!is_null($imageFile) && $imageFile->isValid()) {
           $user->iconfile = $filename; 

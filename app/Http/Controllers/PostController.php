@@ -149,19 +149,21 @@ class PostController extends Controller
      */
     public function update(UploadImageRequest $request, $id)
     {
-        //
-        $request->validate([
-          'title' => 'required|string|max:50',
-          'body' => 'required|string|max:3000', 
-          ]);
-
+      //
+      $request->validate([
+        'title' => 'required|string|max:50',
+        'body' => 'required|string|max:3000', 
+      ]);
+      
+        $post = Post::findOrFail($id);
         $imageFile = $request->image;
         if (!is_null($imageFile) && $imageFile->isValid()) {
+
+          Storage::disk('local')->delete('public/posts/'.$post->filename);
           $filename = Imageservice::upload($imageFile, 'posts');
           
         }
 
-        $post = Post::findOrFail($id);
         if(!is_null($imageFile) && $imageFile->isValid()) { 
           
           $post->filename = $filename; 
@@ -169,7 +171,6 @@ class PostController extends Controller
         $post->title = $request->input('title'); 
         $post->body = $request->input('body'); 
         $post->user_id = Auth::user()->id;
-        $post->updated_at = Carbon::now();
         // dd($post);
 
         
