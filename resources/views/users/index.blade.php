@@ -42,20 +42,23 @@
             <div class="text-dark article-body">
               <h5 class="card-title">{{ $post->title }}</h5>
               <h6 class="card-text text-muted">{{ $post->body }}</h6>
-              <a class="user-link" href="">
+              <div class="user-info">
                 @if(empty($user->iconfile))
                 <img class="avatar" src="{{ asset('images/user.png') }}">
                 @else
                 <img class="avatar" src="{{ asset('storage/users/' . $user->iconfile) }}">
                 @endif
-                <p class="card-text align-items-end"><small class="text-muted">
-                  @if(empty($user->nickName))
-                  {{ $user->name }}
-                  @else
-                  {{ $user->nickName}}
-                  @endif
-                </small></p>
-              </a>
+                <div class="user-header_content">
+                  <p><small>
+                    @if(empty($user->nickName))
+                    {{ $user->name }}
+                    @else
+                    {{ $user->nickName}}
+                    @endif
+                  </small></p>
+                  <p><small>{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</small></p>
+                </div>
+              </div>
             </div>
           </a>
         </div>

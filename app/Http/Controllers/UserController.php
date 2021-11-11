@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
-use App\Http\Requests\UploadImageRequest;
-use App\Services\ImageService;
+use App\Http\Requests\UserUploadImageRequest;
+use App\Services\UserImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -78,7 +78,7 @@ class UserController extends Controller
 
         $imageFile = $request->image;
         if (!is_null($imageFile) && $imageFile->isValid()) {
-          $filename = Imageservice::upload($imageFile, 'users');
+          $filename = UserImageservice::upload($imageFile, 'users');
           
         }
         $user = User::findOrFail($id);

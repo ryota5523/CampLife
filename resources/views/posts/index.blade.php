@@ -16,23 +16,29 @@
                       <div class="text-dark article-body">
                         <h5 class="card-title">{{ $post->title }}</h5>
                         <h6 class="card-text text-muted">{{ $post->body }}</h6>
-                        <a class="user-link" href="{{ route('users', ['id' => $post->user_id]) }}">
-                          @if(empty($post->iconfile))
-                          <img class="avatar" src="{{ asset('images/user.png') }}">
-                          @else
-                          <img class="avatar" src="{{ asset('storage/users/' . $post->iconfile) }}">
-                          @endif
-                          <p class="card-text align-items-end"><small class="text-muted">
-                            @if(empty($post->nickName))
-                            {{ $post->name }}
-                            @else
-                            {{ $post->nickName}}
-                            @endif
-                          </small></p>
-                          <p>{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</p>
-                        </a>
                       </div>
                     </a>
+                        <div class="post-content">
+                          <div class="post-header">
+                            <a class="user-link" href="{{ route('users', ['id' => $post->user_id]) }}">
+                              @if(empty($post->iconfile))
+                              <img class="avatar" src="{{ asset('images/user.png') }}">
+                              @else
+                              <img class="avatar" src="{{ asset('storage/users/' . $post->iconfile) }}">
+                              @endif
+                              <div class="post-info">
+                                <h6>
+                                  @if(empty($post->nickName))
+                                  {{ $post->name }}
+                                  @else
+                                  {{ $post->nickName}}
+                                  @endif
+                                </h6>
+                                <span>{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
+                              </div>
+                            </a>
+                          </div>
+                        </div>
                   </div>
                 @endforeach
               </div>

@@ -1,6 +1,6 @@
 .user-header,
 .profile {
-    padding-top: 10px;
+    padding: 10px 16px 0 16px;
 }
 .nickname p {
     font-size: 16px;
@@ -35,6 +35,26 @@
 .post-sumple {
     width: 100%;
     padding: 5px;
+}
+.post-content {
+    margin-top: 10px;
+    height: 32px;
+}
+.post-header {
+    height: 32px;
+    display: inline-block;
+}
+.post-header a {
+    width: 100%;
+}
+.post-info {
+    display: inline-block;
+    height: 32px;
+}
+.post-info h6,
+.post-info span {
+    margin-bottom: 0;
+    font-size: 12px;
 }
 
 .form-group label {
@@ -72,8 +92,8 @@
     top: 10px;
     right: 10px;
     display: flex;
-    height: 32px;
-    width: 32px;
+    height: 34.4px;
+    width: 34.4px;
     justify-content: center;
     align-items: center;
     z-index: 90;
@@ -189,15 +209,7 @@
     -webkit-line-clamp: 2;
     overflow: hidden;
 }
-.article-body img {
-    margin-top: 5px;
-    width: 32px;
-    height: 32px;
-}
-.article-body p {
-    display: inline;
-}
-.article-body img,
+
 .article-body p {
     align-items: flex-end;
 }
@@ -267,6 +279,7 @@
 .p-header img {
     width: 32px;
     height: 32px;
+    border-radius: 50%;
     margin-right: 8px;
 }
 .p-info,
@@ -298,7 +311,13 @@ span {
 .profile p {
     display: inline-block;
 }
-
+.user-info p {
+    margin-bottom: 0;
+    /* display: inline-block; */
+}
+.user-header_content {
+    display: inline-block;
+}
 .username input,
 .usermail input {
     margin-bottom: 10px;
@@ -348,13 +367,17 @@ span {
 .e-bio {
     margin-bottom: 10px;
 }
+.user-info img,
 .user-link img {
+    vertical-align: text-bottom;
     border-radius: 50%;
     width: 32px;
     height: 32px;
 }
-.user-link p {
-    display: inline-block;
+.user-link {
+    color: #000;
+    width: 100%;
+    height: 36px;
 }
 .post-list {
     height: 140px;

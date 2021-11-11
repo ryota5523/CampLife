@@ -11,9 +11,19 @@
     </div>
     <div class="p-content">
       <div class="p-header">
+        @if(empty($post->iconfile))
         <img src="{{ asset('images/user.png') }}">
+        @else
+        <img src="{{ asset('storage/users/' . $post->iconfile) }}">
+        @endif
         <div class="p-info">
-          <h6>{{ $post->name }}</h6>
+          <h6>
+            @if(empty($post->nickName))
+            {{ $post->name }}
+            @else
+            {{ $post->nickName}}
+            @endif
+          </h6>
           <span>{{ $time }}</span>
         </div>
         @if($post->id === Auth::id())

@@ -15,10 +15,14 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    <!-- Cropper -->
+    <link rel="stylesheet" href="{{ asset('css/cropper.css') }}" />
+    <script src="cropper.js"></script>
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <!-- favicon -->
+    <link rel="shortcut icon" href="{{ asset('images/favicon.png') }}">
 </head>
 <body>
     <div id="app">
@@ -26,7 +30,7 @@
           <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand header-logo" href="{{ url('/') }}">
-                  <img src="{{ asset("images/logo.png") }}" alt="logo">
+                  <img src="{{ asset('images/logo.png') }}" alt="logo">
                 </a>
                 <div class="header-right">
                     <!-- Right Side Of Navbar -->

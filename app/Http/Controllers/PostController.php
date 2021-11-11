@@ -75,7 +75,11 @@ class PostController extends Controller
     public function store(UploadImageRequest $request)
     {
         //
-        
+        $request->validate([
+          'title' => 'required|string|max:50',
+          'body' => 'required|string|max:3000', 
+          ]);
+
         $post = new Post;
         $post->title = $request->input('title');
         $post->body = $request->input('body');
@@ -111,7 +115,7 @@ class PostController extends Controller
         $post = DB::table('posts')
         ->join('users', 'posts.user_id', '=', 'users.id')
         ->where('posts.id', $id)
-        ->select('posts.id as post_id', 'posts.created_at as created_at', 'title', 'body', 'user_id', 'users.id', 'filename', 'users.name', 'users.iconfile')
+        ->select('posts.id as post_id', 'posts.created_at as created_at', 'title', 'body', 'user_id', 'users.id', 'filename', 'users.name', 'users.iconfile', 'users.nickName')
         ->first();
         
 
