@@ -1,37 +1,50 @@
 @extends('layouts.app')
 @section('content')
-
-        <main class="py-4">
-          <div class="container">
-            <div class="row justify-content-center">
-              <div class="card-deck d-row card-columns">
+  <div class="container">
+            <div class="posts">
+              <div class="card-deck d-row card-columns justify-justify-content-between">
                 @foreach ($posts as $post)
-                <div class="">
-                  <div class="col-3">
+                  <div class="article">
                     <a href="{{ route('show', ['id' => $post->post_id ]) }}" class="text-decoration-none">
-                      <div class="card" style="width: 18rem; margin-bottom: 2rem;">                        
+                      <div class="thumbnail">
                           @if(empty($post->filename))
-                          <img src="{{ asset('images/no_image.png') }}" class="card-img-top" style="height: 150px;">
+                          <img src="{{ asset('images/no_image.png') }}">
                           @else
-                          <img src="{{ asset('storage/posts/' . $post->filename) }}" class="card-img-top" style="height: 150px;"> 
-                          @endif
-                        <div class="card-body text-dark" style="height: 150px;">
-                          <h5 class="card-title font-weight-bold">{{ Str::limit($post->title, 49) }}</h5>
-                          <h6 class="card-text text-muted">{{ Str::limit($post->body, 64, '...') }}</h6>
-                          <p class="card-text align-items-end"><small class="text-muted">{{ $post->name }}</small></p>
-                        </div>
+                          <img src="{{ asset('storage/posts/' . $post->filename) }}"> 
+                          @endif                        
+                      </div>
+                      <div class="text-dark article-body">
+                        <h5 class="card-title">{{ $post->title }}</h5>
+                        <h6 class="card-text text-muted">{{ $post->body }}</h6>
                       </div>
                     </a>
+                        <div class="post-content">
+                          <div class="post-header">
+                            <a class="user-link" href="{{ route('users', ['id' => $post->user_id]) }}">
+                              @if(empty($post->iconfile))
+                              <img class="avatar" src="{{ asset('images/user.png') }}">
+                              @else
+                              <img class="avatar" src="{{ asset('storage/users/' . $post->iconfile) }}">
+                              @endif
+                              <div class="post-info">
+                                <h6>
+                                  @if(empty($post->nickName))
+                                  {{ $post->name }}
+                                  @else
+                                  {{ $post->nickName}}
+                                  @endif
+                                </h6>
+                                <span>{{ Carbon\Carbon::parse($post->created_at)->diffForHumans() }}</span>
+                              </div>
+                            </a>
+                          </div>
+                        </div>
                   </div>
-                </div>
                 @endforeach
               </div>
-              {{ $posts->links() }}
-              </div>
             </div>
-          </div>
-        </main>
-      </div>
+            {{ $posts->links('vendor/pagination/pagination_view') }}
+  </div>
 </body>
 </html>
 @endsection

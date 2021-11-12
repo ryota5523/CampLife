@@ -1,21 +1,53 @@
 @extends('layouts.app')
 @section('content')
-<div class="container w-50">
-  <div class="sumnail row">
-    @if(empty($post->filename))
-      <img src="{{ asset('images/no_image.png') }}" class="w-100">
-    @else
-      <img src="{{ asset('storage/posts/' . $post->filename) }}" class="w-100"> 
-    @endif
+  <div class="show-post">
+    <div class="p-thum">
+      @if(!empty($post->filename))
+        <img src="{{ asset('storage/posts/' . $post->filename) }}"> 
+      @endif
+    </div>
+    <div class="p-title">
+      <h2>{{ $post->title }}</h2>
+    </div>
+    <div class="p-content">
+      <div class="p-header">
+        @if(empty($post->iconfile))
+        <img src="{{ asset('images/user.png') }}">
+        @else
+        <img src="{{ asset('storage/users/' . $post->iconfile) }}">
+        @endif
+        <div class="p-info">
+          <h6>
+            @if(empty($post->nickName))
+            {{ $post->name }}
+            @else
+            {{ $post->nickName}}
+            @endif
+          </h6>
+          <span>{{ $time }}</span>
+        </div>
+        @if($post->id === Auth::id())
+        <div class="p-edit">
+          <form action="{{ route('destroy', ['id' => $post->post_id])  }}" method="post" class="delete-btn" id="delete_{‌{ $post->id }}">
+            @csrf
+            <a href="#" class="btn btn-danger btn-dell" data-id="{‌{ $post->id }}" onclick="deletePost(this);">削除</a>
+          </form>
+          <a href="{{ route('edit', ['id' => $post->post_id ]) }}" class="btn btn-outline-success">編集</a>
+        </div>
+        @endif
+      </div>
+    </div>
+    <div class="p-body">
+      <p>{!! nl2br(e($post->body)) !!}</p>
+    </div>
   </div>
-  <div class="row">
-    <h2 class="font-weight-bold">{{ $post->title }}</h2>
-  </div>
-  <div class="row">
-    <h6>{{ $post->name }}</h6>
-  </div>
-  <div class="row">
-    <p>{!! nl2br(e($post->body)) !!}</p>
-  </div>
-</div>
+
+  <script>
+  function deletePost(e){
+      'use strict';
+      if (confirm('本当に削除していいですか？')){
+          document.getElementById('delete_' + e.dataset.id).submit();
+      }
+  }
+  </script>
 @endsection
