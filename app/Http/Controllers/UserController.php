@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 use App\Models\User;
+use App\Http\Requests\UserUploadImageRequest;
+use App\Services\UserImageService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use InterventionImage;
 
 class UserController extends Controller
 {
@@ -14,13 +17,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
         //
-        $id = Auth::id();
-        $user = DB::table('users')->find($id);
-        // dd($user);
-        return view ('users.index', compact('user')) ;
+        $user = User::find($id);
+        $posts = User::find($id)->posts;
+        // dd($user, $posts);
+        
+        return view ('users.index', compact('user','posts')) ;
       }
 
     /**
@@ -45,17 +49,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -64,6 +57,9 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $user = Auth::id($id);
+
+        return view('users.edit', ['user' => Auth::user() ]);
     }
 
     /**
@@ -75,7 +71,30 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      $request->validate([
+        'nickName' => 'nullable|string|max:15',
+        'bio' => 'nullable|string|max:1000', 
+        ]);
+
+        $imageFile = $request->image;
+        $user = User::findOrFail($id);
+        
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+          Storage::disk('local')->delete('public/users/'.$user->filename);
+          $filename = UserImageservice::upload($imageFile, 'users');
+          
+        }
+        
+        if (!is_null($imageFile) && $imageFile->isValid()) {
+          $user->iconfile = $filename; 
+        }
+        
+        $user->nickName = $request->input('nickName');
+        $user->bio = $request->input('bio');
+        $user->save();
+
+      return redirect($id)->with('flash_message', 'プロフィールを更新しました。');
+
     }
 
     /**
