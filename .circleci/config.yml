@@ -3,7 +3,6 @@ jobs:
   build:
     docker:
       - image: cimg/php:7.4.12-node
-    working_directory: /go/src/github.com/gold-kou/go-test-circleci-sample
     steps:
       - checkout
       - run: php --version
