@@ -64,6 +64,11 @@
                                 @endif
                             </div>
                         </div>
+                        <button class="btn btn-success mt-2">
+                          <a href="{{ route('login.guest') }}" class="text-white">
+                            ゲストログイン
+                          </a>
+                        </button>
                     </form>
                 </div>
             </div>

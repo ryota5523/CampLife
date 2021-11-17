@@ -21,7 +21,7 @@
                 <div  class="add-icon">
                   <img src="{{ asset('images/add_picture.png')}}" alt="">
                 </div>
-                @if(!empty($users->filename))
+                @if(empty($user->iconfile))
                 <img src="{{ asset('images/user.png') }}" alt="">
                 @else
                 <img src="{{ asset('storage/users/' . $user->iconfile) }}" class="picture"> 

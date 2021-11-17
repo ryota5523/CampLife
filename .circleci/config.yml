@@ -2,9 +2,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/golang:1.8
+      - image: cimg/php:7.4.12-node
     working_directory: /go/src/github.com/gold-kou/go-test-circleci-sample
     steps:
       - checkout
-      - run: go get -v -t -d ./...
-      - run: go test -v ./...
+      - run: php --version
+      - run: node --version

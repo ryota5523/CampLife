@@ -14,6 +14,8 @@
 
 Auth::routes();
 
+# ゲストユーザーログイン
+Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 Route::get('/', 'PostController@index')->name('index');
 Route::get('show/{id}', 'PostController@show')->name('show');
 Route::get('/{id}', 'UserController@index')->name('users');
