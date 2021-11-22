@@ -445,4 +445,18 @@ span {
         width: 104px;
         height: 104px;
     }
+    .add-icon {
+        width: 104px;
+        height: 104px;
+        position: absolute;
+        background-color: rgba(34, 34, 34, 0.5);
+        border-radius: 50%;
+    }
+    .add-icon img {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: 34px;
+        left: 34px;
+    }
 }

@@ -54,7 +54,7 @@
                         
                       @else
                         <li class="nav-item dropdown pl-2">
-                        @if(empty($post->iconfile))
+                        @if(!empty($post->iconfile))
                         <a id="navbarDropdown" class="header-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                           <img src="{{ asset('storage/users/' . auth()->user()->iconfile) }}">
                           </a>

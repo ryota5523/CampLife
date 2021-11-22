@@ -17,10 +17,10 @@
 
 ## 使用技術
 
-1.HTML/CSS
-2.Bootstrap4
-3.MySQL 8.0.21
-1.Node.js
+1. HTML/CSS
+2. Bootstrap4
+3. MySQL 8.0.21
+4. Node.js
 
 ## これから実装予定の機能
 

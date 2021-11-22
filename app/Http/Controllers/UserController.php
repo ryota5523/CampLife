@@ -73,7 +73,7 @@ class UserController extends Controller
     {
       $request->validate([
         'nickName' => 'nullable|string|max:15',
-        'bio' => 'nullable|string|max:1000', 
+        'bio' => 'nullable|string|max:160', 
         ]);
 
         $imageFile = $request->image;
