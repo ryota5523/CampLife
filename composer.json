@@ -14,7 +14,8 @@
         "intervention/image": "^2.6",
         "laravel/framework": "^6.20.26",
         "laravel/tinker": "^2.5",
-        "nesbot/carbon": "^2.53"
+        "nesbot/carbon": "^2.53",
+        "ext-gd": "*"
     },
     "require-dev": {
         "facade/ignition": "^1.16.15",

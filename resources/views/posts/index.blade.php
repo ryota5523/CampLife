@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<?php phpinfo(); ?>
   <div class="container">
             <div class="posts">
               <div class="card-deck d-row card-columns justify-justify-content-between">
