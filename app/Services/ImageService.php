@@ -14,7 +14,7 @@ class ImageService {
     $filename = $filename1 . '.' . $extension;
     $resizedImage = InterventionImage::make($imageFile)->resize(1280, 866)->encode();
     
-    Storage::disk('s3')->put('posts/' . $folderName . '/' . $filename, $resizedImage , 'public');
+    Storage::disk('s3')->put('posts/' . $filename, $resizedImage , 'public');
 
     return $filename;
   }
