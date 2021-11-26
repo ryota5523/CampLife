@@ -24,7 +24,7 @@
                 @if(empty($user->iconfile))
                 <img src="{{ asset('images/user.png') }}" alt="">
                 @else
-                <img src="{{ asset('storage/users/' . $user->iconfile) }}" class="picture"> 
+                <img src="{{ Storage::disk('s3')->url('users/'. $post->iconfile) }}" class="picture"> 
                 @endif
               </label>
               </a>          
