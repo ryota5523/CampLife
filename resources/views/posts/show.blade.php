@@ -4,7 +4,6 @@
     <div class="p-thum">
       @if(!empty($post->filename))
       <img class="avatar" src="{{ Storage::disk('s3')->url('posts/' . $post->filename) }}">
-
       @endif
     </div>
     <div class="p-title">

@@ -22,7 +22,7 @@
                   @if(empty($post->filename))
                   <img src="{{ asset('images/no_image.png') }}" alt="add" class="post-sumple"">
                   @else
-                  <img class="avatar" src="{{ Storage::disk('s3')->url('posts/'. $post->filename) }}" class="picture">
+                  <img src="{{ Storage::disk('s3')->url('posts/'. $post->filename) }}" class="picture"> 
                   @endif
                 </a>
               </div>
