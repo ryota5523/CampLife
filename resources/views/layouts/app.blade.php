@@ -56,7 +56,7 @@
                         <li class="nav-item dropdown pl-2">
                         @if(!empty($post->iconfile))
                         <a id="navbarDropdown" class="header-icon" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                          <img src="{{ asset('storage/users/' . auth()->user()->iconfile) }}">
+                          <img src="{{ Storage::disk('s3')->url('users/'. auth()->user()->iconfile) }}">
                           </a>
                           @else
                           <a id="navbarDropdown" class="" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
