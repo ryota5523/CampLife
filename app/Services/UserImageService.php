@@ -14,7 +14,7 @@ class UserImageService {
     $filename = $filename1 . '.' . $extension;
     $resizedImage = InterventionImage::make($imageFile)->crop(500, 500)->encode();
     
-    Storage::disk('s3')->put('users/' . $folderName . '/' . $filename, $resizedImage , 'public');
+    Storage::disk('s3')->put($folderName . '/' . $filename, $resizedImage , 'public');
 
     return $filename;
   }
