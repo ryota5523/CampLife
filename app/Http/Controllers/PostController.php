@@ -159,7 +159,6 @@ class PostController extends Controller
         $imageFile = $request->image;
         if (!is_null($imageFile) && $imageFile->isValid()) {
           Storage::disk('s3')->delete('posts/' . $post->filename);
-          Storage::disk('local')->delete('public/posts/'.$post->filename);
           $filename = Imageservice::upload($imageFile, 'posts');
           
         }

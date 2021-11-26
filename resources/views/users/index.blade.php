@@ -6,7 +6,7 @@
       @if(empty($user->iconfile))
       <img src="{{ asset('images/user.png') }}" alt="">
       @else
-      <img src="{{ Storage::disk('s3')->url('users/'. $post->iconfile) }}" class="picture"> 
+      <img src="{{ Storage::disk('s3')->url('users/'. $user->iconfile) }}" class="picture"> 
       @endif
       @if($user->id === Auth::id())
       <div class="profile-edit">
@@ -46,7 +46,7 @@
                 @if(empty($user->iconfile))
                 <img class="avatar" src="{{ asset('images/user.png') }}">
                 @else
-                <img class="avatar" src="{{ asset('storage/users/' . $user->iconfile) }}">
+                <img class="avatar" src="{{ Storage::disk('s3')->url('users/' . $user->iconfile) }}">
                 @endif
                 <div class="user-header_content">
                   <p><small>
