@@ -81,8 +81,7 @@ class UserController extends Controller
         
         if (!is_null($imageFile) && $imageFile->isValid()) {
           Storage::disk('s3')->delete('users/' . $user->filename);
-          $filename = UserImageservice::upload($imageFile, 'users');
-          
+          $filename = UserImageservice::upload($imageFile, 'users');          
         }
         
         if (!is_null($imageFile) && $imageFile->isValid()) {
