@@ -54,7 +54,7 @@
                         
                       @else
                         <li class="nav-item dropdown pl-2">
-                        @if(empty($post->iconfile))
+                        @if(empty(auth()->user()->iconfile))
                           <a id="navbarDropdown" class="" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-person-circle icon" viewBox="0 0 16 16">
                               <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
