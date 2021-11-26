@@ -3,7 +3,8 @@
   <div class="show-post">
     <div class="p-thum">
       @if(!empty($post->filename))
-        <img src="{{ asset('storage/posts/' . $post->filename) }}"> 
+      <img class="avatar" src="{{ Storage::disk('s3')->url($post->iconfile) }}">
+
       @endif
     </div>
     <div class="p-title">
