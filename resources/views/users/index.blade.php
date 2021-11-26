@@ -36,7 +36,7 @@
                 @if(empty($post->filename))
                 <img src="{{ asset('images/no_image.png') }}">
                 @else
-                <img src="{{ Storage::disk('s3')->url('users/'. $post->filename) }}"> 
+                <img src="{{ Storage::disk('s3')->url('posts/'. $post->filename) }}"> 
                 @endif                        
             </div>
             <div class="text-dark article-body">
