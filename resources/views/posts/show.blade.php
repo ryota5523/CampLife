@@ -3,7 +3,7 @@
   <div class="show-post">
     <div class="p-thum">
       @if(!empty($post->filename))
-      <img class="avatar" src="{{ Storage::disk('s3')->url('posts/' . $post->iconfile) }}">
+      <img class="avatar" src="{{ Storage::disk('s3')->url('posts/' . $post->filename) }}">
 
       @endif
     </div>
@@ -15,7 +15,7 @@
         @if(empty($post->iconfile))
         <img src="{{ asset('images/user.png') }}">
         @else
-        <img src="{{ Storage::disk('s3')->url('posts/'. $post->iconfile) }}">
+        <img src="{{ Storage::disk('s3')->url('users/'. $users->iconfile) }}">
         @endif
         <div class="p-info">
           <h6>
