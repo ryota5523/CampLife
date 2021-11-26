@@ -24,7 +24,7 @@
                               @if(empty($post->iconfile))
                               <img class="avatar" src="{{ asset('images/user.png') }}">
                               @else
-                              <img class="avatar" src="{{ $post->iconfile }}">
+                              <img class="avatar" src="{{ Storage::disk('s3')->url($post->iconfile) }}">
                               @endif
                               <div class="post-info">
                                 <h6>
