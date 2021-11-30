@@ -26,6 +26,7 @@
 2. Bootstrap4
 3. MySQL 8.0.21
 4. Node.js
+5. S3
 
 ## これから実装予定の機能
 
